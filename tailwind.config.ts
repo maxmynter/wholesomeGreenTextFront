@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from "tailwindcss"
 
 const config: Config = {
 	content: [
@@ -12,6 +12,7 @@ const config: Config = {
 				postBackgroundBlue: "#d6daf0",
 				postBorderBlue: "#b7c5d9",
 				nameBlockGreen: "#117743",
+				sideArrowLightBlue: "#b7c5d9",
 			},
 		},
 	},
