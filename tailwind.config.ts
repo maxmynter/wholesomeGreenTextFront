@@ -13,6 +13,8 @@ const config: Config = {
 				postBorderBlue: "#b7c5d9",
 				nameBlockGreen: "#117743",
 				sideArrowLightBlue: "#b7c5d9",
+				smallPostRefBlue: "#34345C",
+				postRed: "#DD0000",
 			},
 		},
 	},
