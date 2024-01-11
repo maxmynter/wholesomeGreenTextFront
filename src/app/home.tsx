@@ -25,7 +25,7 @@ const HomePage = () => {
 					<SmallPostRef
 						key="4"
 						title="dataset"
-						text="Lorem ipsum doloret sit amet..."
+						text="More coming. But look here: https://huggingface.co/datasets/maxmyn/wholesome_greentext_110k/blob/main/README.md"
 					/>,
 				]}
 				BigPostRef={<GenerateButton />}
