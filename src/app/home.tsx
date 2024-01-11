@@ -29,7 +29,7 @@ const HomePage = () => {
 					/>,
 				]}
 				BigPostRef={<GenerateButton />}
-				text="I am organizing an online tech session with a solution architect from NVIDIA on LLM Inference: Optimizations and On-Prem Sizing. It's a 90 minutes session, intermediate level. First, we will cover the Software Ecosystem: Triton, TensorRT-LLM, and available containers and integrations. Second, we will cover the selection of the deployment configuration and sizing: how to understand, how many GPUs are needed for a specific deployment."
+				text="Site still under construction. Will be done by Sunday :) "
 			/>
 		</div>
 	)
