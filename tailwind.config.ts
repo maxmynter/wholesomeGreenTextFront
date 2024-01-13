@@ -15,6 +15,7 @@ const config: Config = {
 				sideArrowLightBlue: "#b7c5d9",
 				smallPostRefBlue: "#34345C",
 				postRed: "#DD0000",
+				greentextGreen: "#789922",
 			},
 		},
 	},

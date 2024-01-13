@@ -1,4 +1,5 @@
-import React from "react"
+"use client"
+import React, { useEffect, useState } from "react"
 const RenderPostRefs = (
 	PostRefs: React.ReactElement | React.ReactElement[] | undefined
 ) => {
@@ -12,23 +13,34 @@ const RenderPostRefs = (
 }
 
 const RandomPostNumberDisplay: React.FC = () => {
-	const num = Math.floor(Math.random() * 100000000)
+	const [num, setNum] = useState(100000000)
+	useEffect(() => {
+		setNum(Math.floor(Math.random() * 100000000))
+	}, [])
+
 	return (
 		<span className="text-black font-sans text-sm inline-block mr-2">{`No.${num}`}</span>
 	)
 }
 
 const DateTimeDisplay: React.FC = () => {
-	const now = new Date()
-	const day = now.getDate().toString().padStart(2, "0")
-	const month = (now.getMonth() + 1).toString().padStart(2, "0") // getMonth() returns 0-11
-	const year = now.getFullYear().toString().substring(2)
-	const weekday = now.toLocaleString("en-US", { weekday: "short" })
-	const hours = now.getHours().toString().padStart(2, "0")
-	const minutes = now.getMinutes().toString().padStart(2, "0")
-	const seconds = now.getSeconds().toString().padStart(2, "0")
+	const [currentDateTime, setCurrentDatetime] = useState(
+		"mm/dd/yy(wd)hr:min:sec"
+	)
+	useEffect(() => {
+		const now = new Date()
+		const day = now.getDate().toString().padStart(2, "0")
+		const month = (now.getMonth() + 1).toString().padStart(2, "0") // getMonth() returns 0-11
+		const year = now.getFullYear().toString().substring(2)
+		const weekday = now.toLocaleString("en-US", { weekday: "short" })
+		const hours = now.getHours().toString().padStart(2, "0")
+		const minutes = now.getMinutes().toString().padStart(2, "0")
+		const seconds = now.getSeconds().toString().padStart(2, "0")
 
-	const currentDateTime = `${month}/${day}/${year}(${weekday})${hours}:${minutes}:${seconds}`
+		setCurrentDatetime(
+			`${month}/${day}/${year}(${weekday})${hours}:${minutes}:${seconds}`
+		)
+	}, [])
 
 	return (
 		<span className="text-black inline-block mr-2 font-sans text-sm">
@@ -61,11 +73,27 @@ const PostContentTile: React.FC<{
 	BigPostRef?: React.ReactElement | React.ReactElement[]
 	SmallPostRef?: React.ReactElement | React.ReactElement[]
 }> = ({ text, BigPostRef, SmallPostRef }) => {
+	const renderText = (text: string): JSX.Element[] => {
+		return text
+			.replace(/>>/g, ">")
+			.split("\n")
+			.map((line, index) => {
+				if (line.startsWith(">")) {
+					return (
+						<div key={index} className="text-greentextGreen">
+							{line}
+						</div>
+					)
+				} else {
+					return <div key={index}>{line}</div>
+				}
+			})
+	}
 	return (
 		<div className="bg-postBackgroundBlue border-postBorderBlue border border-customBorder table max-w-md p-0.5 pb-4 mr-1 ml-1">
 			<PostInfo postRefs={SmallPostRef} />
 			<div className="ml-8 m-4">
-				<p className="text-gray-800 mb-8">{text}</p>
+				<p className="text-gray-800 mb-8">{renderText(text)}</p>
 				{RenderPostRefs(BigPostRef)}
 			</div>
 		</div>
@@ -78,7 +106,7 @@ const Post: React.FC<{
 	SmallPostRef?: React.ReactElement | React.ReactElement[]
 }> = ({ text, BigPostRef, SmallPostRef }) => {
 	return (
-		<div className="flex justify-center items-center h-screen">
+		<div className="flex justify-center items-center m-2">
 			<div>
 				<div className="inline-block text-sideArrowLightBlue float-left mt-0.5 mr-0.5 ml-0.5">
 					{">>"}
