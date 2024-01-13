@@ -93,7 +93,7 @@ const PostContentTile: React.FC<{
 		<div className="bg-postBackgroundBlue border-postBorderBlue border border-customBorder table max-w-md p-0.5 pb-4 mr-1 ml-1">
 			<PostInfo postRefs={SmallPostRef} />
 			<div className="ml-8 m-4">
-				<p className="text-gray-800 mb-8">{renderText(text)}</p>
+				<div className="text-gray-800 mb-8">{renderText(text)}</div>
 				{RenderPostRefs(BigPostRef)}
 			</div>
 		</div>
