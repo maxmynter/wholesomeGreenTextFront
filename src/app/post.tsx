@@ -65,9 +65,7 @@ const PostInfo: React.FC<{
 				<RandomPostNumberDisplay />
 				<span className="text-black font-sans text-sm inline-block">▶</span>
 			</div>
-			<div className="flex flex-wrap items-center">
-				{RenderPostRefs(postRefs)}
-			</div>
+			{RenderPostRefs(postRefs)}
 		</div>
 	)
 }
