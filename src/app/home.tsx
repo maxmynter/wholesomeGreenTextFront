@@ -40,7 +40,7 @@ const HomePage = () => {
 					<SmallPostRef
 						key="6"
 						title="faq"
-						text="> what are greentexts?\n greentexts are a distinctive storytelling format popularized on the imageboard 4chan. They are typically brief, anecdotal, and often humorous or satirical in nature. The format is characterized by the use of a green-colored 'greater-than' sign at the beginning of each line, a feature of the website's text quoting system. These greentexts usually follow a simple narrative style and are known for their informal, and sometimes crude, language.\n> isn't 4chan bad?\nI tried to get around all the lewd stuff by using (and manually cleaning) 'wholesome' greentexts and obviously did have more control with synthetic generation."
+						text="> what are greentexts?\n\ngreentexts are a distinctive storytelling format popularized on the imageboard 4chan. They are typically brief, anecdotal, and often humorous or satirical in nature. The format is characterized by the use of a green-colored 'greater-than' sign at the beginning of each line, a feature of the website's text quoting system. These greentexts usually follow a simple narrative style and are known for their informal, and sometimes crude, language.\n> isn't 4chan bad?\n\nI tried to get around all the lewd stuff by using (and manually cleaning) 'wholesome' greentexts and obviously did have more control with synthetic generation."
 					/>,
 				]}
 				BigPostRef={<GenerateButton setGreentextsArray={setGeneratedGTX} />}
