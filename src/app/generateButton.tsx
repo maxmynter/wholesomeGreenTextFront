@@ -5,18 +5,15 @@ import { v4 as uuidv4 } from "uuid"
 import { generatedGreentextPair } from "./types"
 
 const generateGreentext = async () => {
-	const response = await fetch(
-		`${process.env.NEXT_PUBLIC_INFERENCE_URL}`,
-		{
-			headers: {
-				Authorization: `Bearer ${process.env.NEXT_PUBLIC_HF_TOKEN}`,
-			},
-			method: "POST",
-			body: JSON.stringify({ inputs: ">" }),
-		}
-	)
+	const response = await fetch(`${process.env.NEXT_PUBLIC_INFERENCE_URL}`, {
+		headers: {
+			Authorization: `Bearer ${process.env.NEXT_PUBLIC_HF_TOKEN}`,
+		},
+		method: "POST",
+		body: JSON.stringify({ inputs: ">" }),
+	})
 	const result = await response.json()
-	return result
+		return result
 }
 
 const GenerateButton: React.FC<{
