@@ -54,16 +54,20 @@ const PostInfo: React.FC<{
 }> = ({ postRefs }) => {
 	return (
 		<div className="flex flex-wrap items-center">
-			<input type="checkbox" className="mr-2" />
-			<span className="inline-block mr-2">
-				<span className="font-bold text-nameBlockGreen inline-block">
-					Anonymous
+			<div className="flex items-center mr-2">
+				<input type="checkbox" className="mr-2" />
+				<span className="inline-block mr-2">
+					<span className="font-bold text-nameBlockGreen inline-block">
+						Anonymous
+					</span>
 				</span>
-			</span>
-			<DateTimeDisplay />
-			<RandomPostNumberDisplay />
-			<span className="text-black font-sans text-sm inline-block">▶</span>
-			{RenderPostRefs(postRefs)}
+				<DateTimeDisplay />
+				<RandomPostNumberDisplay />
+				<span className="text-black font-sans text-sm inline-block">▶</span>
+			</div>
+			<div className="flex flex-wrap items-center">
+				{RenderPostRefs(postRefs)}
+			</div>
 		</div>
 	)
 }
@@ -112,7 +116,7 @@ const Post: React.FC<{
 }> = ({ text, BigPostRef, SmallPostRef }) => {
 	return (
 		<div className="flex justify-center items-center m-2 w-3/4">
-			<div>
+			<div className="flex items-start">
 				<div className="inline-block text-sideArrowLightBlue float-left mt-0.5 mr-0.5 ml-0.5">
 					{">>"}
 				</div>

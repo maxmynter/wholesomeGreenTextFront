@@ -9,7 +9,7 @@ const HomePage = () => {
 	const [generatedGtx, setGeneratedGTX] = useState<generatedGreentextPair[]>([])
 
 	return (
-		<div className="flex min-h-screen min-w-screen flex-col items-center  pt-24">
+		<div className="flex min-h-screen min-w-screen flex-col items-start  p-24">
 			<Post
 				SmallPostRef={[
 					<SmallPostRef
