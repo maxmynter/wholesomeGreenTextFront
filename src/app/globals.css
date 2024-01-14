@@ -17,8 +17,11 @@
 }
 
 body {
-	min-height: 100vh;
+	font-family: Arial, Helvetica, sans-serif;
+	min-height: 100%;
 	background: linear-gradient(to right, #d1d5ee, #eef2ff);
 	margin: 0;
+	background-size: cover;
+	overscroll-behavior: none;
 	background-attachment: fixed;
 }
