@@ -6,7 +6,7 @@ import { generatedGreentextPair } from "./types"
 
 const generateGreentext = async () => {
 	const response = await fetch(
-		"https://api-inference.huggingface.co/models/maxmyn/tiny-wholesome-greentexts",
+		`${process.env.NEXT_PUBLIC_INFERENCE_URL}`,
 		{
 			headers: {
 				Authorization: `Bearer ${process.env.NEXT_PUBLIC_HF_TOKEN}`,
