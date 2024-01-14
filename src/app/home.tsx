@@ -9,13 +9,13 @@ const HomePage = () => {
 	const [generatedGtx, setGeneratedGTX] = useState<generatedGreentextPair[]>([])
 
 	return (
-		<div className="flex min-h-screen min-w-screen flex-col items-center  p-24">
+		<div className="flex min-h-screen min-w-screen flex-col items-center  pt-24">
 			<Post
 				SmallPostRef={[
 					<SmallPostRef
 						key="1"
 						title="why"
-						text="Why not?\nI wanted to learn about transformer models and LLMs. I am focused on what I can achieve with consumer hardware. Also I am pretty interested in online culture (so much so that I almost started a Ph.D. on it) so I guess I gravitate to this application domain."
+						text="Why not?\n\nI wanted to learn about transformer models and LLMs. I am focused on what I can achieve with consumer hardware. Also I am pretty interested in online culture (so much so that I almost started a Ph.D. on it) so I guess I gravitate to this application domain."
 					/>,
 					<SmallPostRef
 						key="2"
@@ -34,6 +34,11 @@ const HomePage = () => {
 					/>,
 					<SmallPostRef
 						key="5"
+						title="tech"
+						text="I've trained the models with PyTorch on Kaggle. Data crawling was done via the Reddit Pushift dataset. Synthetic data generation was done via OpenAI's APIs. Data, models and inference are hosted with huggingface. The frontend was build with Next.Js, TypeScript, Tailwind. I use Supabase to store generations and selection of better performing generations."
+					/>,
+					<SmallPostRef
+						key="6"
 						title="faq"
 						text="> what are greentexts?\n greentexts are a distinctive storytelling format popularized on the imageboard 4chan. They are typically brief, anecdotal, and often humorous or satirical in nature. The format is characterized by the use of a green-colored 'greater-than' sign at the beginning of each line, a feature of the website's text quoting system. These greentexts usually follow a simple narrative style and are known for their informal, and sometimes crude, language.\n> isn't 4chan bad?\nI tried to get around all the lewd stuff by using (and manually cleaning) 'wholesome' greentexts and obviously did have more control with synthetic generation."
 					/>,

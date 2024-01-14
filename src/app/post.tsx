@@ -77,8 +77,6 @@ const PostContentTile: React.FC<{
 		const cleanedText = text.replace(/>>/g, ">").replace(/\\n/g, "\n")
 
 		return cleanedText.split("\n").map((line, index) => {
-			console.log(line)
-
 			if (line.startsWith(">")) {
 				return (
 					<div key={index} className="text-greentextGreen">
@@ -97,7 +95,7 @@ const PostContentTile: React.FC<{
 		})
 	}
 	return (
-		<div className="bg-postBackgroundBlue border-postBorderBlue border border-customBorder table max-w-md p-0.5 pb-4 mr-1 ml-1">
+		<div className="bg-postBackgroundBlue border-postBorderBlue border border-customBorder table  p-0.5 pb-4 mr-1 ml-1">
 			<PostInfo postRefs={SmallPostRef} />
 			<div className="ml-8 m-4">
 				<div className="text-gray-800 mb-8">{renderText(text)}</div>
@@ -113,7 +111,7 @@ const Post: React.FC<{
 	SmallPostRef?: React.ReactElement | React.ReactElement[]
 }> = ({ text, BigPostRef, SmallPostRef }) => {
 	return (
-		<div className="flex justify-center items-center m-2">
+		<div className="flex justify-center items-center m-2 w-3/4">
 			<div>
 				<div className="inline-block text-sideArrowLightBlue float-left mt-0.5 mr-0.5 ml-0.5">
 					{">>"}
