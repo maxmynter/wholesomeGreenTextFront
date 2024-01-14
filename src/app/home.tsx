@@ -47,7 +47,7 @@ const HomePage = () => {
 				text="> be me \n> want to train llms\n> llms to large for consumer hardware\n> train small llms instead\n\n I've trained small (1M- 125M parameter) LLMs to tell stories in an idiosyncratic style.\n Click generate below to see sample output. \n\nIf you then select the better one, you help me to improve the models with RLHF. \n\nSee the links above for further information."
 			/>
 			{generatedGtx.length > 0 && (
-				<div className="pl-12">
+				<div className="pl-36">
 					{generatedGtx.map((gtx, idx) => (
 						<Post
 							key={idx}
