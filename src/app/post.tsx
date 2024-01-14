@@ -56,11 +56,11 @@ const PostInfo: React.FC<{
 		<div className="flex flex-wrap items-center">
 			<div className="flex items-center mr-2">
 				<input type="checkbox" className="mr-2" />
-				<span className="inline-block mr-2">
+				<div className="inline-block mr-2">
 					<span className="font-bold text-nameBlockGreen inline-block">
 						Anonymous
 					</span>
-				</span>
+				</div>
 				<DateTimeDisplay />
 				<RandomPostNumberDisplay />
 				<span className="text-black font-sans text-sm inline-block">▶</span>
@@ -97,7 +97,7 @@ const PostContentTile: React.FC<{
 		})
 	}
 	return (
-		<div className="bg-postBackgroundBlue border-postBorderBlue border border-customBorder table  p-0.5 pb-4 mr-1 ml-1">
+		<div className="bg-postBackgroundBlue border-postBorderBlue border border-customBorder table p-0.5 pb-4 pr-1 pl-1">
 			<PostInfo postRefs={SmallPostRef} />
 			<div className="ml-8 m-4">
 				<div className="text-gray-800 mb-8">{renderText(text)}</div>
@@ -113,7 +113,7 @@ const Post: React.FC<{
 	SmallPostRef?: React.ReactElement | React.ReactElement[]
 }> = ({ text, BigPostRef, SmallPostRef }) => {
 	return (
-		<div className="flex justify-center items-center m-2 w-3/4">
+		<div className="flex justify-center items-center m-2 max-w-full">
 			<div className="flex items-start">
 				<div className="inline-block text-sideArrowLightBlue float-left mt-0.5 mr-0.5 ml-0.5">
 					{">>"}
