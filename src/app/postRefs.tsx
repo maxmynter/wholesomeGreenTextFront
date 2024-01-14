@@ -35,7 +35,7 @@ const SmallPostRef: React.FC<{
 				onClick={() => setIsHovered(!isHovered)}
 			/>
 			{isHovered && (
-				<div className="absolute left-1/2 top-full transform -translate-y-1/2, -translate-x-1/2 z-10 w-96">
+				<div className="absolute left-1/2 top-full transform -translate-y-1/2, -translate-x-1/2 z-10 min-w-[500px]">
 					<PostContentTile text={text} />
 				</div>
 			)}
