@@ -2,7 +2,7 @@
 import { BigPostRef } from "./postRefs"
 import { supabase } from "./supabaseClient"
 import { v4 as uuidv4 } from "uuid"
-import { generatedGreentextPair, model } from "./types"
+import { generatedGreentexts, model } from "./types"
 import { startToken } from "./home"
 
 const generateGreentext = async (model: model) => {
@@ -16,6 +16,9 @@ const generateGreentext = async (model: model) => {
 		body: JSON.stringify({
 			inputs: startToken,
 			parameters: {
+				top_k: 15,
+				temperature: 1.2,
+				max_new_tokens: 45,
 				return_full_text: false,
 				do_sample: true,
 				num_return_sequences: 1,
@@ -28,25 +31,24 @@ const generateGreentext = async (model: model) => {
 }
 
 const GenerateButton: React.FC<{
-	setGreentextsArray: (newArray: generatedGreentextPair[]) => void
+	greentexts: generatedGreentexts[]
+	setGreentextsArray: (newArray: generatedGreentexts[]) => void
 	model: model
-}> = ({ setGreentextsArray, model }) => {
+}> = ({ greentexts, setGreentextsArray, model }) => {
 	const handleGenerate = async () => {
-		const first = await generateGreentext(model)
-		const first_gtx: string = first[0].generated_text
-		const second = await generateGreentext(model)
-		const second_gtx: string = second[0].generated_text
+		const result = await generateGreentext(model)
+		const content: string = result[0].generated_text
 
-		const batchId = uuidv4()
-		await supabase.from("greentexts").insert([
-			{ content: first_gtx, batch_id: batchId, model: model.name },
-			{ content: second_gtx, batch_id: batchId, model: model.name },
-		])
+		const generationId = uuidv4()
+		await supabase
+			.from("greentexts")
+			.insert([{ content: content, generation_id: generationId, model: model.name }])
 
-		setGreentextsArray([
-			{ batch: batchId, text: first_gtx, model: model },
-			{ batch: batchId, text: second_gtx, model: model },
-		])
+		setGreentextsArray(
+			[{ generationId: generationId, text: content, model: model }].concat(
+				greentexts
+			)
+		)
 	}
 	return <BigPostRef text="Generate" onClick={handleGenerate} />
 }

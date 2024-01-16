@@ -3,7 +3,8 @@ import { Post } from "./post"
 import { SmallPostRef, BigPostRef } from "./postRefs"
 import GenerateButton from "./generateButton"
 import { useState } from "react"
-import { generatedGreentextPair, models } from "./types"
+import { generatedGreentexts, models, quality } from "./types"
+import { supabase } from "./supabaseClient"
 
 export const startToken = "<|4chanGtxStart|>"
 
@@ -14,7 +15,17 @@ models["TinyStories on Easy Greentexts"] = {
 }
 
 const HomePage = () => {
-	const [generatedGtx, setGeneratedGTX] = useState<generatedGreentextPair[]>([])
+	const [generatedGtx, setGeneratedGTX] = useState<generatedGreentexts[]>([])
+
+	const handleSelectQuality = async (
+		gtx: generatedGreentexts,
+		quality: quality
+	) => {
+		await supabase
+			.from("greentexts")
+			.update({ is_good: quality })
+			.eq("generation_id", gtx.generationId)
+	}
 
 	return (
 		<div className="flex flex-col items-start p-24">
@@ -53,6 +64,7 @@ const HomePage = () => {
 				]}
 				BigPostRef={
 					<GenerateButton
+						greentexts={generatedGtx}
 						setGreentextsArray={setGeneratedGTX}
 						model={models["TinyStories on Easy Greentexts"]}
 					/>
@@ -65,7 +77,10 @@ const HomePage = () => {
 						<Post
 							key={idx}
 							text={gtx.text}
-							BigPostRef={<BigPostRef text="This greentext is better" />}
+							BigPostRef={[
+								<BigPostRef key="1" text="This is good" onClick={() => { handleSelectQuality(gtx, "Yes")}} />,
+								<BigPostRef key="2" text="This is bad" onClick={() => { handleSelectQuality(gtx, "No") }} />,
+							]}
 						/>
 					))}
 				</div>
