@@ -3,14 +3,25 @@ import { BigPostRef } from "./postRefs"
 import { supabase } from "./supabaseClient"
 import { v4 as uuidv4 } from "uuid"
 import { generatedGreentextPair, model } from "./types"
+import { startToken } from "./home"
 
 const generateGreentext = async (model: model) => {
 	const response = await fetch(`${model.requestURL}`, {
 		headers: {
-			Authorization: `Bearer ${model.token}`,
+			Accept: "application/json",
+			Authorization: `Bearer ${process.env.NEXT_PUBLIC_HF_TOKEN}`,
+			"Content-Type": "application/json",
 		},
 		method: "POST",
-		body: JSON.stringify({ inputs: ">" }),
+		body: JSON.stringify({
+			inputs: startToken,
+			parameters: {
+				return_full_text: false,
+				do_sample: true,
+				num_return_sequences: 1,
+			},
+			options: { use_cache: false },
+		}),
 	})
 	const result = await response.json()
 	return result

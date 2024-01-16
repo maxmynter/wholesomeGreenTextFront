@@ -6,7 +6,6 @@ export type generatedGreentextPair = {
 export interface model {
 	name: string
 	requestURL: string
-	token: string
 }
 
 export interface models {

@@ -5,11 +5,12 @@ import GenerateButton from "./generateButton"
 import { useState } from "react"
 import { generatedGreentextPair, models } from "./types"
 
+export const startToken = "<|4chanGtxStart|>"
+
 let models: models = {}
 models["TinyStories on Easy Greentexts"] = {
 	name: "TinyStories on Easy Greentexts",
 	requestURL: process.env.NEXT_PUBLIC_INFERENCE_URL_TINY_ON_EASY || "",
-	token: process.env.NEXT_PUBLIC_HF_TOKEN_TINY_ON_EASY || "",
 }
 
 const HomePage = () => {

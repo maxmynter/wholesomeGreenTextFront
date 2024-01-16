@@ -1,5 +1,6 @@
 "use client"
 import React, { useEffect, useState } from "react"
+import { startToken } from "./home"
 const RenderPostRefs = (
 	PostRefs: React.ReactElement | React.ReactElement[] | undefined
 ) => {
@@ -76,7 +77,18 @@ const PostContentTile: React.FC<{
 	SmallPostRef?: React.ReactElement | React.ReactElement[]
 }> = ({ text, BigPostRef, SmallPostRef }) => {
 	const renderText = (text: string): JSX.Element[] => {
-		const cleanedText = text.replace(/>>/g, ">").replace(/\\n/g, "\n")
+		const cleanGreentext = (greentext: string) => {
+			text = greentext
+				.replace(startToken, "")
+				.replace(/>>/g, ">")
+				.replace(/\\n/g, "\n")
+
+			if (!text.startsWith(">")) {
+				text = ">" + text
+			}
+			return text
+		}
+		const cleanedText = cleanGreentext(text)
 
 		return cleanedText.split("\n").map((line, index) => {
 			if (line.startsWith(">")) {
