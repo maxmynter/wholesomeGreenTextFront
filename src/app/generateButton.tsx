@@ -2,38 +2,39 @@
 import { BigPostRef } from "./postRefs"
 import { supabase } from "./supabaseClient"
 import { v4 as uuidv4 } from "uuid"
-import { generatedGreentextPair } from "./types"
+import { generatedGreentextPair, model } from "./types"
 
-const generateGreentext = async () => {
-	const response = await fetch(`${process.env.NEXT_PUBLIC_INFERENCE_URL}`, {
+const generateGreentext = async (model: model) => {
+	const response = await fetch(`${model.requestURL}`, {
 		headers: {
-			Authorization: `Bearer ${process.env.NEXT_PUBLIC_HF_TOKEN}`,
+			Authorization: `Bearer ${model.token}`,
 		},
 		method: "POST",
 		body: JSON.stringify({ inputs: ">" }),
 	})
 	const result = await response.json()
-		return result
+	return result
 }
 
 const GenerateButton: React.FC<{
 	setGreentextsArray: (newArray: generatedGreentextPair[]) => void
-}> = ({ setGreentextsArray }) => {
+	model: model
+}> = ({ setGreentextsArray, model }) => {
 	const handleGenerate = async () => {
-		const first = await generateGreentext()
+		const first = await generateGreentext(model)
 		const first_gtx: string = first[0].generated_text
-		const second = await generateGreentext()
+		const second = await generateGreentext(model)
 		const second_gtx: string = second[0].generated_text
 
 		const batchId = uuidv4()
 		await supabase.from("greentexts").insert([
-			{ content: first_gtx, batch_id: batchId },
-			{ content: second_gtx, batch_id: batchId },
+			{ content: first_gtx, batch_id: batchId, model: model.name },
+			{ content: second_gtx, batch_id: batchId, model: model.name },
 		])
 
 		setGreentextsArray([
-			{ batch: batchId, text: first_gtx },
-			{ batch: batchId, text: second_gtx },
+			{ batch: batchId, text: first_gtx, model: model },
+			{ batch: batchId, text: second_gtx, model: model },
 		])
 	}
 	return <BigPostRef text="Generate" onClick={handleGenerate} />
