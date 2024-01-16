@@ -1,14 +1,15 @@
+export type quality = "Yes" | "No"
+
 export type generatedGreentexts = {
 	text: string
 	model: model
-	isGood?: number
+	isGood?: quality
 	generationId: string
 }
 export interface model {
 	name: string
 	requestURL: string
 }
-export type quality = "Yes" | "No"
 
 export interface models {
 	[key: string]: model

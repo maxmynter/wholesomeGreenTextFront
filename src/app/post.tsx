@@ -125,7 +125,7 @@ const Post: React.FC<{
 	SmallPostRef?: React.ReactElement | React.ReactElement[]
 }> = ({ text, BigPostRef, SmallPostRef }) => {
 	return (
-		<div className="flex justify-center items-center m-2 max-w-full">
+		<div className="flex justify-center items-center m-2 max-w-full min-w-96">
 			<div className="flex items-start">
 				<div className="inline-block text-sideArrowLightBlue float-left mt-0.5 mr-0.5 ml-0.5">
 					{">>"}

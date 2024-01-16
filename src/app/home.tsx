@@ -25,6 +25,15 @@ const HomePage = () => {
 			.from("greentexts")
 			.update({ is_good: quality })
 			.eq("generation_id", gtx.generationId)
+
+		const updatedGtx = generatedGtx.map((item) => {
+			if (item.generationId === gtx.generationId) {
+				return { ...item, isGood: quality }
+			}
+			return item
+		})
+
+		setGeneratedGTX(updatedGtx)
 	}
 
 	return (
@@ -72,14 +81,26 @@ const HomePage = () => {
 				text="> be me \n> want to train llms\n> llms to large for consumer hardware\n> train small llms instead\n\n I've trained small (1M- 125M parameter) LLMs to tell stories in an idiosyncratic style.\n Click generate below to see sample output. \n\nIf you then select the better one, you help me to improve the models with RLHF. \n\nSee the links above for further information."
 			/>
 			{generatedGtx.length > 0 && (
-				<div className="pl-24">
+				<div className="pl-24 flex flex-col items-start">
 					{generatedGtx.map((gtx, idx) => (
 						<Post
 							key={idx}
 							text={gtx.text}
 							BigPostRef={[
-								<BigPostRef key="1" text="This is good" onClick={() => { handleSelectQuality(gtx, "Yes")}} />,
-								<BigPostRef key="2" text="This is bad" onClick={() => { handleSelectQuality(gtx, "No") }} />,
+								<BigPostRef
+									key="1"
+									text={`This is good ${gtx.isGood == "Yes" ? "✅" : ""}`}
+									onClick={() => {
+										handleSelectQuality(gtx, "Yes")
+									}}
+								/>,
+								<BigPostRef
+									key="2"
+									text={`This is bad ${gtx.isGood == "No" ? "❌" : ""}`}
+									onClick={() => {
+										handleSelectQuality(gtx, "No")
+									}}
+								/>,
 							]}
 						/>
 					))}
