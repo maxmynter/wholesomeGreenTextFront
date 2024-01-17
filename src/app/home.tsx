@@ -10,8 +10,26 @@ export const startToken = "<|4chanGtxStart|>"
 
 const models: model[] = [
 	{
-		name: "TinyStories, Easy Greentexts",
+		name: "TinyStories, Sequential",
+		requestURL:
+			process.env.NEXT_PUBLIC_INFERENCE_URL_SEQUENTIAL_TO_THANKS || "",
+	},
+	{
+		name: "TinyStories, Simple Thanks Genre",
+		requestURL: process.env.NEXT_PUBLIC_INFERENCE_URL_TINY_ON_THANK || "",
+	},
+	{
+		name: "TinyStories, Simple Greentexts",
 		requestURL: process.env.NEXT_PUBLIC_INFERENCE_URL_TINY_ON_EASY || "",
+	},
+	{
+		name: "DistilGPT-2, Full Greentexts",
+		requestURL: process.env.NEXT_PUBLIC_INFERENCE_URL_DISTILGPT || "",
+	},
+
+	{
+		name: "TinyStories-1M, Simple Greentexts",
+		requestURL: process.env.NEXT_PUBLIC_INFERENCE_URL_1M_ON_SIMPLE || "",
 	},
 ]
 
@@ -39,6 +57,13 @@ const HomePage = () => {
 
 	return (
 		<div className="flex flex-col items-start p-24">
+			<div className="w-full justify-center pb-10">
+				<div className="border-b-2 border-dividerColor flex items-center w-full justify-center">
+					<span className="text-boardTitleRed font-bold text-2xl pb-2">
+						{"/gtx/ - Wholesome Greentexts"}
+					</span>
+				</div>
+			</div>
 			<Post
 				SmallPostRef={[
 					<SmallPostRef
