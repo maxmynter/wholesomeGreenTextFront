@@ -75,21 +75,25 @@ const GenerateButton: React.FC<{
 
 	const handleGenerate = async () => {
 		setIsGenerating(true)
-		const result = await generateGreentext(model)
-		const content: string = result[0].generated_text
+		try {
+			const result = await generateGreentext(model)
+			const content: string = result[0].generated_text
 
-		const generationId = uuidv4()
-		await supabase
-			.from("greentexts")
-			.insert([
-				{ content: content, generation_id: generationId, model: model.name },
-			])
+			const generationId = uuidv4()
+			await supabase
+				.from("greentexts")
+				.insert([
+					{ content: content, generation_id: generationId, model: model.name },
+				])
 
-		setGreentextsArray(
-			[{ generationId: generationId, text: content, model: model }].concat(
-				greentexts
+			setGreentextsArray(
+				[{ generationId: generationId, text: content, model: model }].concat(
+					greentexts
+				)
 			)
-		)
+		} catch (error) {
+			console.error("Error generating greentext:", error)
+		}
 		setIsGenerating(false)
 	}
 	return (
