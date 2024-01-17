@@ -3,16 +3,17 @@ import { Post } from "./post"
 import { SmallPostRef, BigPostRef } from "./postRefs"
 import GenerateButton from "./generateButton"
 import { useState } from "react"
-import { generatedGreentexts, models, quality } from "./types"
+import { generatedGreentexts, model, quality } from "./types"
 import { supabase } from "./supabaseClient"
 
 export const startToken = "<|4chanGtxStart|>"
 
-let models: models = {}
-models["TinyStories on Easy Greentexts"] = {
-	name: "TinyStories on Easy Greentexts",
-	requestURL: process.env.NEXT_PUBLIC_INFERENCE_URL_TINY_ON_EASY || "",
-}
+const models: model[] = [
+	{
+		name: "TinyStories on Easy Greentexts",
+		requestURL: process.env.NEXT_PUBLIC_INFERENCE_URL_TINY_ON_EASY || "",
+	},
+]
 
 const HomePage = () => {
 	const [generatedGtx, setGeneratedGTX] = useState<generatedGreentexts[]>([])
@@ -71,13 +72,14 @@ const HomePage = () => {
 						text="> what are greentexts?\n\ngreentexts are a distinctive storytelling format popularized on the imageboard 4chan. They are typically brief, anecdotal, and often humorous or satirical in nature. The format is characterized by the use of a green-colored 'greater-than' sign at the beginning of each line, a feature of the website's text quoting system. These greentexts usually follow a simple narrative style and are known for their informal, and sometimes crude, language.\n> isn't 4chan bad?\n\nI tried to get around all the lewd stuff by using (and manually cleaning) 'wholesome' greentexts and obviously did have more control with synthetic generation."
 					/>,
 				]}
-				BigPostRef={
+				BigPostRef={models.map((mdl, index) => (
 					<GenerateButton
+						key={index}
 						greentexts={generatedGtx}
 						setGreentextsArray={setGeneratedGTX}
-						model={models["TinyStories on Easy Greentexts"]}
+						model={mdl}
 					/>
-				}
+				))}
 				text="> be me \n> want to train llms\n> llms to large for consumer hardware\n> train small llms instead\n\n I've trained small (1M- 125M parameter) LLMs to tell stories in an idiosyncratic style.\n Click generate below to see sample output. \n\nIf you then select the better one, you help me to improve the models with RLHF. \n\nSee the links above for further information."
 			/>
 			{generatedGtx.length > 0 && (

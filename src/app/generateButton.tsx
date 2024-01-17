@@ -62,16 +62,16 @@ const GenerateButton: React.FC<{
 			intervalId = setInterval(() => {
 				dotCount = (dotCount + 1) % 4
 				const dots = ".".repeat(dotCount)
-				setGenerateText(`Generating${dots}`)
+				setGenerateText(`${dots}`)
 			}, 500) // Change text every 500ms
 		} else {
-			setGenerateText("Generate")
+			setGenerateText(`Generate (${model.name})`)
 		}
 
 		return () => {
 			clearInterval(intervalId)
 		}
-	}, [isGenerating])
+	}, [isGenerating, model.name])
 
 	const handleGenerate = async () => {
 		setIsGenerating(true)
