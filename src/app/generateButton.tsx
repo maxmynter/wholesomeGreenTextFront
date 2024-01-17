@@ -51,7 +51,7 @@ const GenerateButton: React.FC<{
 	model: model
 }> = ({ greentexts, setGreentextsArray, model }) => {
 	const [isGenerating, setIsGenerating] = useState(false)
-	const [generateText, setGenerateText] = useState("Generate")
+	const [generateText, setGenerateText] = useState(`Generate (${model.name})`)
 
 	useEffect(() => {
 		let intervalId: NodeJS.Timeout
