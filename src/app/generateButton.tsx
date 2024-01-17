@@ -45,6 +45,14 @@ const generateGreentext = async (model: model, retry_count = 0) => {
 	return result
 }
 
+const cleanGreentext = (greentext: string) => {
+	greentext.replace(startToken, "").replace(/>>/g, ">")
+	if (!greentext.startsWith(">")) {
+		greentext = ">" + greentext
+	}
+	return greentext
+}
+
 const GenerateButton: React.FC<{
 	greentexts: generatedGreentexts[]
 	setGreentextsArray: (newArray: generatedGreentexts[]) => void
@@ -77,7 +85,7 @@ const GenerateButton: React.FC<{
 		setIsGenerating(true)
 		try {
 			const result = await generateGreentext(model)
-			const content: string = result[0].generated_text
+			const content: string = cleanGreentext(result[0].generated_text)
 
 			const generationId = uuidv4()
 			await supabase

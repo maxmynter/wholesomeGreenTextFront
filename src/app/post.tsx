@@ -77,33 +77,26 @@ const PostContentTile: React.FC<{
 	SmallPostRef?: React.ReactElement | React.ReactElement[]
 }> = ({ text, BigPostRef, SmallPostRef }) => {
 	const renderText = (text: string): JSX.Element[] => {
-		const cleanGreentext = (greentext: string) => {
-			text = greentext
-				.replace(startToken, "")
-				.replace(/>>/g, ">")
-				.replace(/\\n/g, "\n")
-
-			return text
-		}
-		const cleanedText = cleanGreentext(text)
-
-		return cleanedText.split("\n").map((line, index) => {
-			if (line.startsWith(">")) {
-				return (
-					<div key={index} className="text-greentextGreen">
-						{line}
-					</div>
-				)
-			} else if (line === "") {
-				return (
-					<div key={index} className="empty-line">
-						<br />
-					</div>
-				)
-			} else {
-				return <div key={index}>{line}</div>
-			}
-		})
+		return text
+			.replace(/\\n/g, "\n")
+			.split("\n")
+			.map((line, index) => {
+				if (line.startsWith(">")) {
+					return (
+						<div key={index} className="text-greentextGreen">
+							{line}
+						</div>
+					)
+				} else if (line === "") {
+					return (
+						<div key={index} className="empty-line">
+							<br />
+						</div>
+					)
+				} else {
+					return <div key={index}>{line}</div>
+				}
+			})
 	}
 	return (
 		<div className="bg-postBackgroundBlue border-postBorderBlue border border-customBorder table p-0.5 pb-4 pr-1 pl-1">
