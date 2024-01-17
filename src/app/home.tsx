@@ -2,10 +2,11 @@
 import { Post } from "./post"
 import { SmallPostRef, BigPostRef } from "./postRefs"
 import GenerateButton from "./generateButton"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { generatedGreentexts, model, quality } from "./types"
 import { supabase } from "./supabaseClient"
 import { langdingPageText } from "./texts/landing"
+import { v4 as uuidv4 } from "uuid"
 
 export const startToken = "<|4chanGtxStart|>"
 
@@ -36,6 +37,18 @@ const models: model[] = [
 
 const HomePage = () => {
 	const [generatedGtx, setGeneratedGTX] = useState<generatedGreentexts[]>([])
+
+	useEffect(() => {
+		const logSession = async () => {
+			await supabase.from("sessions").insert([
+				{
+					session_id: uuidv4(),
+					session_start: new Date(),
+				},
+			])
+		}
+		logSession()
+	}, [])
 
 	const handleSelectQuality = async (
 		gtx: generatedGreentexts,
