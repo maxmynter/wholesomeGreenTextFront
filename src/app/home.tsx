@@ -5,6 +5,7 @@ import GenerateButton from "./generateButton"
 import { useState } from "react"
 import { generatedGreentexts, model, quality } from "./types"
 import { supabase } from "./supabaseClient"
+import { langdingPageText } from "./texts/landing"
 
 export const startToken = "<|4chanGtxStart|>"
 
@@ -105,7 +106,7 @@ const HomePage = () => {
 						model={mdl}
 					/>
 				))}
-				text="Greentexts are a distinctive form of storytelling. They originated from 4chan's quoting system that turns quoted text green. An example greentext looks like this:\n\n> be me \n> want to train llms\n> too large, too expensive\n> train small llms instead\n> large small large language models next?\n\n I've trained multiple small (1M- 125M parameter) LLMs to create stories in the greentext style.\n\nClick 'Generate (model, dataset)` below to try how the models and training procedures compare. You can indicate the quality of each generation.\nThe first generation of a model might take a while, since I have to spin up the inference server.\nSee the links above for details on models, datasets, and the project in general."
+				text={langdingPageText}
 			/>
 			{generatedGtx.length > 0 && (
 				<div className="pl-24 flex flex-col items-start">
