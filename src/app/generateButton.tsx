@@ -6,8 +6,8 @@ import { generatedGreentexts, model } from "./types"
 import { startToken } from "./home"
 import { useState, useEffect } from "react"
 
-const MAX_RETRIES = 3
-const RETRY_DELAY_MS = 2000
+const MAX_RETRIES = 4
+const RETRY_DELAY_MS = 5000
 
 const generateGreentext = async (model: model, retry_count = 0) => {
 	const response = await fetch(`${model.requestURL}`, {

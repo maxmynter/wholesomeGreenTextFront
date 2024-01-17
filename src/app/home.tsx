@@ -10,7 +10,7 @@ export const startToken = "<|4chanGtxStart|>"
 
 const models: model[] = [
 	{
-		name: "TinyStories on Easy Greentexts",
+		name: "TinyStories, Easy Greentexts",
 		requestURL: process.env.NEXT_PUBLIC_INFERENCE_URL_TINY_ON_EASY || "",
 	},
 ]
@@ -80,7 +80,7 @@ const HomePage = () => {
 						model={mdl}
 					/>
 				))}
-				text="> be me \n> want to train llms\n> llms to large for consumer hardware\n> train small llms instead\n\n I've trained small (1M- 125M parameter) LLMs to tell stories in an idiosyncratic style.\n Click generate below to see sample output. \n\nIf you then select the better one, you help me to improve the models with RLHF. \n\nSee the links above for further information."
+				text="Greentexts are a distinctive form of storytelling. They originated from 4chan's quoting system that turns quoted text green. An example greentext looks like this:\n\n> be me \n> want to train llms\n> too large, too expensive\n> train small llms instead\n> large small large language models next?\n\n I've trained multiple small (1M- 125M parameter) LLMs to create stories in the greentext style.\n\nClick 'Generate (model, dataset)` below to try how the models and training procedures compare. You can indicate the quality of each generation.\nThe first generation of a model might take a while, since I have to spin up the inference server.\nSee the links above for details on models, datasets, and the project in general."
 			/>
 			{generatedGtx.length > 0 && (
 				<div className="pl-24 flex flex-col items-start">
