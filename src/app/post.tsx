@@ -83,9 +83,6 @@ const PostContentTile: React.FC<{
 				.replace(/>>/g, ">")
 				.replace(/\\n/g, "\n")
 
-			if (!text.startsWith(">")) {
-				text = ">" + text
-			}
 			return text
 		}
 		const cleanedText = cleanGreentext(text)
