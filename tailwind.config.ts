@@ -16,6 +16,8 @@ const config: Config = {
 				smallPostRefBlue: "#34345C",
 				postRed: "#DD0000",
 				greentextGreen: "#789922",
+				boardTitleRed: "#af0a0f",
+				dividerColor: "#b7c5d9",
 			},
 		},
 	},
