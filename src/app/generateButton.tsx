@@ -6,7 +6,10 @@ import { generatedGreentexts, model } from "./types"
 import { startToken } from "./home"
 import { useState, useEffect } from "react"
 
-const generateGreentext = async (model: model) => {
+const MAX_RETRIES = 3
+const RETRY_DELAY_MS = 2000
+
+const generateGreentext = async (model: model, retry_count = 0) => {
 	const response = await fetch(`${model.requestURL}`, {
 		headers: {
 			Accept: "application/json",
@@ -27,6 +30,17 @@ const generateGreentext = async (model: model) => {
 			options: { use_cache: false },
 		}),
 	})
+	if (!response.ok) {
+		if (response.status == 502 && retry_count < MAX_RETRIES) {
+			return new Promise((resolve) => {
+				setTimeout(() => {
+					resolve(generateGreentext(model, retry_count + 1))
+				}, RETRY_DELAY_MS)
+			})
+		} else {
+			throw new Error(`HTTP error! status: ${response.status}`)
+		}
+	}
 	const result = await response.json()
 	return result
 }
