@@ -122,7 +122,7 @@ const HomePage = () => {
 					{generatedGtx.map((gtx, idx) => (
 						<Post
 							key={idx}
-							text={gtx.text}
+							text={gtx.text + `\n\nby ${gtx.model.name}`}
 							BigPostRef={[
 								<BigPostRef
 									key="1"

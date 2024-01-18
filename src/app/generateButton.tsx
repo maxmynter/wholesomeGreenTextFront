@@ -68,7 +68,7 @@ const GenerateButton: React.FC<{
 
 		if (isGenerating) {
 			let dotCount = 0
-			setGenerateText("Generating")
+			setGenerateText("")
 			intervalId = setInterval(() => {
 				dotCount = (dotCount + 1) % 4
 				const dots = ".".repeat(dotCount)
