@@ -1,0 +1,1 @@
+export const modelInfo = `I am working with small to mid sized transformer models that still fit on consumer hardware, mostly GPT-2 type models like TinyStories which are small and trained on a reduced vocabulary. \n\nYou can find models (and data) on Huggingface (huggingface.co/maxmyn).`

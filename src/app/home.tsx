@@ -8,6 +8,9 @@ import { supabase } from "./supabaseClient"
 import { langdingPageText } from "./texts/landing"
 import { v4 as uuidv4 } from "uuid"
 import { who } from "./texts/who"
+import { modelInfo } from "./texts/model"
+import { dataInfo } from "./texts/datasets"
+import { techInfo } from "./texts/tech"
 
 export const startToken = "<|4chanGtxStart|>"
 
@@ -86,26 +89,9 @@ const HomePage = () => {
 			<Post
 				SmallPostRef={[
 					<SmallPostRef key="2" title="who" text={who} />,
-					<SmallPostRef
-						key="3"
-						title="model"
-						text="I am working with small to mid sized transformer models that still fit on consumer hardware. You can find models (and data) on Huggingface (huggingface.co/maxmyn)."
-					/>,
-					<SmallPostRef
-						key="4"
-						title="datasets"
-						text="I've made three different datasets for this project. One is actual greentext scraped from the /r/wholesomegreentexts subreddit. These were mostly screenshots so I used OCR and manual cleaning. To augment this data I used OpenAIs GPT-4 and GPT-3.5 Turbo to generated two datasets of greentexts. One only using simple words and another without those constraints. Find them on huggingface (https://huggingface.co/maxmyn)."
-					/>,
-					<SmallPostRef
-						key="5"
-						title="tech"
-						text="I've trained the models with PyTorch on Kaggle. Data crawling was done via the Reddit Pushift dataset. Synthetic data generation was done via OpenAI's APIs. Data, models and inference are hosted with huggingface. The frontend was build with Next.Js, TypeScript, Tailwind. I use Supabase to store generations and selection of better performing generations."
-					/>,
-					<SmallPostRef
-						key="6"
-						title="faq"
-						text="> what are greentexts?\n\ngreentexts are a distinctive storytelling format popularized on the imageboard 4chan. They are typically brief, anecdotal, and often humorous or satirical in nature. The format is characterized by the use of a green-colored 'greater-than' sign at the beginning of each line, a feature of the website's text quoting system. These greentexts usually follow a simple narrative style and are known for their informal, and sometimes crude, language.\n> isn't 4chan bad?\n\nI tried to get around all the lewd stuff by using (and manually cleaning) 'wholesome' greentexts and obviously did have more control with synthetic generation."
-					/>,
+					<SmallPostRef key="3" title="model" text={modelInfo} />,
+					<SmallPostRef key="4" title="datasets" text={dataInfo} />,
+					<SmallPostRef key="5" title="tech&code" text={techInfo} />,
 				]}
 				BigPostRef={models.map((mdl, index) => (
 					<GenerateButton
