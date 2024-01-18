@@ -7,6 +7,7 @@ import { generatedGreentexts, model, quality } from "./types"
 import { supabase } from "./supabaseClient"
 import { langdingPageText } from "./texts/landing"
 import { v4 as uuidv4 } from "uuid"
+import { who } from "./texts/who"
 
 export const startToken = "<|4chanGtxStart|>"
 
@@ -84,16 +85,7 @@ const HomePage = () => {
 			</div>
 			<Post
 				SmallPostRef={[
-					<SmallPostRef
-						key="1"
-						title="why"
-						text="Why not?\n\nI wanted to learn about transformer models and LLMs. I am focused on what I can achieve with consumer hardware. Also I am pretty interested in online culture (so much so that I almost started a Ph.D. on it) so I guess I gravitate to this application domain."
-					/>,
-					<SmallPostRef
-						key="2"
-						title="who"
-						text="Me.: \n\nThat is Max Mynter. Find me on \ntwitter: @maxmynter\nor Linkedin: /in/maxmynter"
-					/>,
+					<SmallPostRef key="2" title="who" text={who} />,
 					<SmallPostRef
 						key="3"
 						title="model"
