@@ -15,6 +15,24 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+I use a [Supabase](https://supabase.com/) database. You'll have to set up your own. I use the following SQL tables to store generations and sessions.  
+
+```sql
+CREATE TYPE performance AS ENUM ('Yes', 'No', 'n/a');
+CREATE TABLE greentexts (
+    id SERIAL PRIMARY KEY,
+    content TEXT NOT NULL,
+    generation_id UUID NOT NULL,
+    is_good performance DEFAULT 'n/a',
+    model TEXT NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE sessions (
+    session_id VARCHAR(255) PRIMARY KEY,
+    session_start TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+```
 
 ## ML Stuff
 
