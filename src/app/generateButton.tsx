@@ -20,8 +20,10 @@ const generateGreentext = async (model: model, retry_count = 0) => {
 		body: JSON.stringify({
 			inputs: startToken,
 			parameters: {
-				top_k: 15,
-				temperature: 1.2,
+				top_k: 50,
+				top_p: 0.9,
+				temperature: 0.8,
+				repetition_penalty: 1.2,
 				max_new_tokens: 45,
 				return_full_text: false,
 				do_sample: true,
