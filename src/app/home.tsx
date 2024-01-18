@@ -16,20 +16,20 @@ export const startToken = "<|4chanGtxStart|>"
 
 const models: model[] = [
 	{
-		name: "TinyStories, Simple Thanks Genre",
+		name: "TinyStories 33M, Simple Thanks Genre",
 		requestURL: process.env.NEXT_PUBLIC_INFERENCE_URL_TINY_ON_THANK || "",
 	},
 	{
-		name: "TinyStories, Full Dataset",
+		name: "TinyStories 33M, Full Dataset",
 		requestURL: process.env.NEXT_PUBLIC_INFERENCE_URL_TINY_FULL_DATA || "",
 	},
 	{
-		name: "TinyStories, Sequential",
+		name: "TinyStories 33M, Sequential",
 		requestURL:
 			process.env.NEXT_PUBLIC_INFERENCE_URL_SEQUENTIAL_TO_THANKS || "",
 	},
 	{
-		name: "TinyStories, Simple Greentexts",
+		name: "TinyStories 33M, Simple Greentexts",
 		requestURL: process.env.NEXT_PUBLIC_INFERENCE_URL_TINY_ON_EASY || "",
 	},
 	{
